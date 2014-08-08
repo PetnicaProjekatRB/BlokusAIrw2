@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace BlokusDLL
 {
+    //aaa
     class Hand
     {
 
