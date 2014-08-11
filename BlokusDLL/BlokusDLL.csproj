@@ -7,8 +7,8 @@
     <ProjectGuid>{7CBEB90A-582B-4C7C-AE9F-CA6C9AD22DEB}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>BlokusDLL</RootNamespace>
-    <AssemblyName>BlokusDLL</AssemblyName>
+    <RootNamespace>BlokusDll</RootNamespace>
+    <AssemblyName>BlokusDll</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -54,14 +54,13 @@
     <Compile Include="Piece.cs" />
     <Compile Include="PieceLoader.cs" />
     <Compile Include="Player.cs" />
-    <Compile Include="Polynomino.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Square.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="komadici.json" />
-    <None Include="komadiciOrbitale.json" />
+    <None Include="komadici.json" Label="komadici" />
+    <None Include="komadiciOrbitale.json" Label="komadiciOrbitale" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Newtonsoft.Json.dll" />

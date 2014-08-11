@@ -1,22 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
-namespace BlokusDLL
+namespace BlokusDll
 {
     class Square
     {
-        public Player owner;
+        public Player Owner;
 
         public bool Covered(Player pl)
         {
-            return owner == pl;
+            return Owner == pl;
         }
 
         public Square(Player owner)
         {
-            this.owner = owner;
+            this.Owner = owner;
         }
     }
 }

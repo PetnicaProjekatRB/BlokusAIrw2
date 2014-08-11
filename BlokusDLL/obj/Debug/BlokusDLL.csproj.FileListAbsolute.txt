@@ -9,3 +9,7 @@ C:\Users\master\Source\Repos\NewRepo2\BlokusDLL\bin\Debug\BlokusDLL.exe.config
 C:\Users\master\Source\Repos\NewRepo2\BlokusDLL\obj\Debug\BlokusDLL.exe
 C:\Users\master\Source\Repos\NewRepo2\BlokusDLL\obj\Debug\BlokusDLL.pdb
 C:\Users\mihajlo\Source\Repos\BlokusAIrw22\BlokusDLL\bin\Debug\BlokusDLL.exe.config
+C:\Users\master\Source\Repos\NewRepo2\BlokusDLL\obj\Debug\BlokusDll.csprojResolveAssemblyReference.cache
+C:\Users\master\Source\Repos\NewRepo2\BlokusDLL\bin\Debug\BlokusDll.exe
+C:\Users\master\Source\Repos\NewRepo2\BlokusDLL\bin\Debug\BlokusDll.pdb
+C:\Users\master\Source\Repos\NewRepo2\BlokusDLL\bin\Debug\Newtonsoft.Json.dll

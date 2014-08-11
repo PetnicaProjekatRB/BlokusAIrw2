@@ -3,7 +3,7 @@ using System.Linq;
 using Newtonsoft.Json;
 using System.IO;
 
-namespace BlokusDLL
+namespace BlokusDll
 {
     class PieceLoader
     {
@@ -19,24 +19,42 @@ namespace BlokusDLL
 
         public static void LoadPieces()
         {
-            var deckText = File.ReadAllText("C:\\komadici.json");
+            var deckText = File.ReadAllText(@"..\..\komadici.json");
             Komadici komadi = JsonConvert.DeserializeObject<Komadici>(deckText);
             var matricaSvega = new KomadiciOrbiatle();
             matricaSvega.orbitale = new Piece[komadi.pieces.Length][];
             for (int i = 0; i < komadi.pieces.Length; i++)
             {
-                matricaSvega.orbitale[i] = new Piece[8];
-                matricaSvega.orbitale[i][0] = komadi.pieces[i];
-                matricaSvega.orbitale[i][1] = komadi.pieces[i].Rot90();
-                matricaSvega.orbitale[i][2] = komadi.pieces[i].Rot90().Rot90();
-                matricaSvega.orbitale[i][3] = komadi.pieces[i].Rot90().Rot90().Rot90();
-                matricaSvega.orbitale[i][4] = komadi.pieces[i].ReflectY();
-                matricaSvega.orbitale[i][5] = komadi.pieces[i].ReflectY().Rot90();
-                matricaSvega.orbitale[i][6] = komadi.pieces[i].ReflectY().Rot90().Rot90();
-                matricaSvega.orbitale[i][7] = komadi.pieces[i].ReflectY().Rot90().Rot90().Rot90();
+                var numOrb = komadi.pieces[i].orbits.Count<int>((int x) => (x == 1));
+                var orbCnt = 0;
+                matricaSvega.orbitale[i] = new Piece[numOrb];
+
+                if (komadi.pieces[i].orbits[0] == 1)
+                    matricaSvega.orbitale[i][orbCnt++] = komadi.pieces[i];
+
+                if (komadi.pieces[i].orbits[1] == 1)
+                    matricaSvega.orbitale[i][orbCnt++] = komadi.pieces[i].Rot90();
+
+                if (komadi.pieces[i].orbits[2] == 1)
+                    matricaSvega.orbitale[i][orbCnt++] = komadi.pieces[i].Rot90().Rot90();
+
+                if (komadi.pieces[i].orbits[3] == 1)
+                    matricaSvega.orbitale[i][orbCnt++] = komadi.pieces[i].Rot90().Rot90().Rot90();
+
+                if (komadi.pieces[i].orbits[4] == 1)
+                    matricaSvega.orbitale[i][orbCnt++] = komadi.pieces[i].ReflectY();
+
+                if (komadi.pieces[i].orbits[5] == 1)
+                    matricaSvega.orbitale[i][orbCnt++] = komadi.pieces[i].ReflectY().Rot90();
+
+                if (komadi.pieces[i].orbits[6] == 1)
+                    matricaSvega.orbitale[i][orbCnt++] = komadi.pieces[i].ReflectY().Rot90().Rot90();
+
+                if (komadi.pieces[i].orbits[7] == 1)
+                    matricaSvega.orbitale[i][orbCnt++] = komadi.pieces[i].ReflectY().Rot90().Rot90().Rot90();
             }
             var orbitaleText = JsonConvert.SerializeObject(matricaSvega);
-            File.WriteAllText("C:\\komadiciOrbitale.json", orbitaleText);
+            File.WriteAllText(@"..\..\komadiciOrbitale.json", orbitaleText);
         }
 
         public static int Main(string[] argv)
