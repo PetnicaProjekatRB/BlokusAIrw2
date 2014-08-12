@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace BlokusDll
 {
-    enum Player
+    public enum Player
     {
         None = 0,
         PL1,

@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace BlokusDll
 {
-    class Square
+    public class Square
     {
         public Player Owner;
 

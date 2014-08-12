@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace BlokusDll
 {
-    struct Piece
+    public struct Piece
     {
         public string  name;
         public int[][] coords;

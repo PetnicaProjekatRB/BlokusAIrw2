@@ -5,7 +5,7 @@
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{7CBEB90A-582B-4C7C-AE9F-CA6C9AD22DEB}</ProjectGuid>
-    <OutputType>WinExe</OutputType>
+    <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>BlokusDll</RootNamespace>
     <AssemblyName>BlokusDll</AssemblyName>
@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -50,6 +51,8 @@
   <ItemGroup>
     <Compile Include="GameGrid.cs" />
     <Compile Include="Hand.cs" />
+    <Compile Include="IBlokusAi.cs" />
+    <Compile Include="KomadiciOrbitale.cs" />
     <Compile Include="LibertyType.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="PieceLoader.cs" />

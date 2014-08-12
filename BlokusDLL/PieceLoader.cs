@@ -5,23 +5,21 @@ using System.IO;
 
 namespace BlokusDll
 {
-    class PieceLoader
+    public class PieceLoader
     {
         public struct Komadici
         {
+#pragma warning disable 0649
             public Piece[] pieces;
+#pragma warning restore 0649
         }
+        
 
-        public struct KomadiciOrbiatle
+        public static void RebuildPieces()
         {
-            public Piece[][] orbitale;
-        }
-
-        public static void LoadPieces()
-        {
-            var deckText = File.ReadAllText(@"..\..\komadici.json");
+            var deckText = File.ReadAllText(@"..\..\..\BlokusDll\komadici.json");
             Komadici komadi = JsonConvert.DeserializeObject<Komadici>(deckText);
-            var matricaSvega = new KomadiciOrbiatle();
+            var matricaSvega = new KomadiciOrbitale();
             matricaSvega.orbitale = new Piece[komadi.pieces.Length][];
             for (int i = 0; i < komadi.pieces.Length; i++)
             {
@@ -54,13 +52,13 @@ namespace BlokusDll
                     matricaSvega.orbitale[i][orbCnt++] = komadi.pieces[i].ReflectY().Rot90().Rot90().Rot90();
             }
             var orbitaleText = JsonConvert.SerializeObject(matricaSvega);
-            File.WriteAllText(@"..\..\komadiciOrbitale.json", orbitaleText);
+            File.WriteAllText(@"..\..\..\BlokusDll\komadiciOrbitale.json", orbitaleText);
         }
 
-        public static int Main(string[] argv)
+        public static KomadiciOrbitale LoadPieces()
         {
-            LoadPieces();
-            return 0;
+            return JsonConvert.DeserializeObject<KomadiciOrbitale>(
+                File.ReadAllText(@"..\..\..\BlokusDll\komadiciOrbitale.json"));
         }
     }
 }
