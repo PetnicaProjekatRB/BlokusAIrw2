@@ -51,9 +51,11 @@
   <ItemGroup>
     <Compile Include="GameGrid.cs" />
     <Compile Include="Hand.cs" />
+    <Compile Include="HelperFunctions.cs" />
     <Compile Include="IBlokusAi.cs" />
     <Compile Include="KomadiciOrbitale.cs" />
     <Compile Include="LibertyType.cs" />
+    <Compile Include="Move.cs" />
     <Compile Include="Piece.cs" />
     <Compile Include="PieceLoader.cs" />
     <Compile Include="Player.cs" />

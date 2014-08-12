@@ -3,7 +3,7 @@ using System.Linq;
 
 namespace BlokusDll
 {
-    interface IBlokusAi
+    public interface IBlokusAi
     {
         /// <summary>
         /// Validates the AI. Should return true in order to use this AI.
@@ -30,5 +30,12 @@ namespace BlokusDll
         /// 3 if forbidden,
         /// -1 for internal error/exception</returns>
         int Modify(string name, string value);
+
+        /// <summary>
+        /// Plays a move on the game board
+        /// </summary>
+        /// <param name="grid">Game grid to play on</param>
+        /// <returns>True if move mlayed, false otherwise</returns>
+        bool Play(ref GameGrid grid);
     }
 }

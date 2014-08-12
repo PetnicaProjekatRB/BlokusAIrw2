@@ -13,7 +13,8 @@ namespace BlokusDll
             public Piece[] pieces;
 #pragma warning restore 0649
         }
-        
+
+        public static KomadiciOrbitale matricaSvega = PieceLoader.LoadPieces();
 
         public static void RebuildPieces()
         {

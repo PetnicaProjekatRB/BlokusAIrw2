@@ -3,9 +3,49 @@ using System.Linq;
 
 namespace BlokusDll
 {
-    //aaa
-    class Hand
+    public struct Hand
     {
+        private bool[] piecesAvailable;
 
+        public Hand Clone()
+        {
+            Hand h;
+            h.piecesAvailable = this.piecesAvailable.ToArray<bool>();
+            return h;
+        }
+
+        public bool this[int i]
+        {
+            get
+            {
+                try
+                { return piecesAvailable[i]; }
+                catch (Exception e)
+                { return false; }
+            }
+        }
+
+        public void UsePiece(int i)
+        {
+            try
+            { piecesAvailable[i] = false; }
+            catch (Exception e)
+            { }
+        }
+
+        public Hand(params bool[] pcs)
+	    {
+            piecesAvailable = pcs;
+	    }
+
+        public static Hand FullHand = new Hand(
+            true,true,true,
+            true,true,true,
+            true,true,true,
+            true,true,true,
+            true,true,true,
+            true,true,true,
+            true,true,true
+            );
     }
 }
