@@ -1,0 +1,12 @@
+C:\Users\master\Source\Repos\NewRepo2\PiecesTester\obj\Debug\PiecesTester.csprojResolveAssemblyReference.cache
+C:\Users\master\Source\Repos\NewRepo2\PiecesTester\obj\Debug\PiecesTester.Properties.Resources.resources
+C:\Users\master\Source\Repos\NewRepo2\PiecesTester\obj\Debug\PiecesTester.csproj.GenerateResource.Cache
+C:\Users\master\Source\Repos\NewRepo2\PiecesTester\bin\Debug\PiecesTester.exe.config
+C:\Users\master\Source\Repos\NewRepo2\PiecesTester\bin\Debug\PiecesTester.exe
+C:\Users\master\Source\Repos\NewRepo2\PiecesTester\bin\Debug\PiecesTester.pdb
+C:\Users\master\Source\Repos\NewRepo2\PiecesTester\bin\Debug\BlokusDll.dll
+C:\Users\master\Source\Repos\NewRepo2\PiecesTester\bin\Debug\Newtonsoft.Json.dll
+C:\Users\master\Source\Repos\NewRepo2\PiecesTester\bin\Debug\BlokusDll.pdb
+C:\Users\master\Source\Repos\NewRepo2\PiecesTester\obj\Debug\PiecesTester.exe
+C:\Users\master\Source\Repos\NewRepo2\PiecesTester\obj\Debug\PiecesTester.pdb
+C:\Users\master\Source\Repos\NewRepo2\PiecesTester\obj\Debug\PiecesTester.PieceTester.resources
