@@ -25,12 +25,13 @@ namespace BlokusDll
             }
         }
 
-        public void UsePiece(int i)
+        public Hand UsePiece(int i)
         {
             try
             { piecesAvailable[i] = false; }
             catch (Exception e)
             { }
+            return this;
         }
 
         public Hand(params bool[] pcs)
@@ -39,13 +40,13 @@ namespace BlokusDll
 	    }
 
         public static Hand FullHand = new Hand(
-            true,true,true,
-            true,true,true,
-            true,true,true,
-            true,true,true,
-            true,true,true,
-            true,true,true,
-            true,true,true
+            true,true,false,
+            true,true,false,
+            true,true,false,
+            true,true,false,
+            true,true,false,
+            true,true,false,
+            true,true,false
             );
     }
 }

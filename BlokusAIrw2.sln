@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlokusDll", "BlokusDLL\Blok
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PiecesTester", "PiecesTester\PiecesTester.csproj", "{11FED58C-164F-4F81-BF4C-7ECDAE36BF97}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "minimaxSize", "minimaxSize\minimaxSize.csproj", "{8E6DC3BF-111A-4AE3-9FB9-8B9046F531F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{11FED58C-164F-4F81-BF4C-7ECDAE36BF97}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{11FED58C-164F-4F81-BF4C-7ECDAE36BF97}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{11FED58C-164F-4F81-BF4C-7ECDAE36BF97}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8E6DC3BF-111A-4AE3-9FB9-8B9046F531F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8E6DC3BF-111A-4AE3-9FB9-8B9046F531F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8E6DC3BF-111A-4AE3-9FB9-8B9046F531F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8E6DC3BF-111A-4AE3-9FB9-8B9046F531F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

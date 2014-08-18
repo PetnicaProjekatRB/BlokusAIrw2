@@ -108,7 +108,7 @@ namespace PiecesTester
         private void button2_Click(object sender, EventArgs e)
         {
             var ai1 = new TestAI();
-            var ai2 = new TestAI();
+            var ai2 = new minimaxSize.Ai();
             ai1.Start(Player.PL1);
             ai2.Start(Player.PL2);
             ai1.hand = Hand.FullHand.Clone();
@@ -124,13 +124,21 @@ namespace PiecesTester
             {
                 bool first = ai1.Play(ref grid);
                 bool second = ai2.Play(ref grid);
-
+                this.RaisePaintEvent(null, null);
                 both = first && second;
             }
 
-            while (ai1.Play(ref grid)) { }
+            while (ai1.Play(ref grid))
+            {
 
-            while (ai1.Play(ref grid)) { }
+                this.RaisePaintEvent(null, null);
+            }
+
+            while (ai1.Play(ref grid))
+            {
+
+                this.RaisePaintEvent(null, null);
+            }
 
             int scoreO = 0;
             int scoreP = 0;

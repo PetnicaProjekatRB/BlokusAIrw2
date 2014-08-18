@@ -240,5 +240,12 @@ namespace BlokusDll
                 return false;
             }
         }
+
+        public GameGrid Clone()
+        {
+            GameGrid gr = new GameGrid();
+            gr.Squares = new Dictionary<Tuple<int,int>,Square>(this.Squares);
+            return gr;
+        }
     }
 }

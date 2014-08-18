@@ -83,6 +83,10 @@
       <Project>{7cbeb90a-582b-4c7c-ae9f-ca6c9ad22deb}</Project>
       <Name>BlokusDll</Name>
     </ProjectReference>
+    <ProjectReference Include="..\minimaxSize\minimaxSize.csproj">
+      <Project>{8e6dc3bf-111a-4ae3-9fb9-8b9046f531f8}</Project>
+      <Name>minimaxSize</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -1,0 +1,8 @@
+C:\Users\mihajlo\Source\Repos\BlokusAIrw23\minimaxSize\bin\Debug\minimaxSize.dll
+C:\Users\mihajlo\Source\Repos\BlokusAIrw23\minimaxSize\bin\Debug\minimaxSize.pdb
+C:\Users\mihajlo\Source\Repos\BlokusAIrw23\minimaxSize\bin\Debug\BlokusDll.dll
+C:\Users\mihajlo\Source\Repos\BlokusAIrw23\minimaxSize\bin\Debug\Newtonsoft.Json.dll
+C:\Users\mihajlo\Source\Repos\BlokusAIrw23\minimaxSize\bin\Debug\BlokusDll.pdb
+C:\Users\mihajlo\Source\Repos\BlokusAIrw23\minimaxSize\obj\Debug\minimaxSize.csprojResolveAssemblyReference.cache
+C:\Users\mihajlo\Source\Repos\BlokusAIrw23\minimaxSize\obj\Debug\minimaxSize.dll
+C:\Users\mihajlo\Source\Repos\BlokusAIrw23\minimaxSize\obj\Debug\minimaxSize.pdb
