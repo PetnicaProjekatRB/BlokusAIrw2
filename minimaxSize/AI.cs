@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace minimaxSize
 {
@@ -13,6 +14,7 @@ namespace minimaxSize
         public Hand oponentHand;
         private Player player;
         private int DEPTH = 1;
+        private int potez = 1;
 
         public bool Validate()
         {
@@ -47,6 +49,7 @@ namespace minimaxSize
 
         public bool Play(ref GameGrid grid)
         {
+            potez++;
             Move? move = chooseMove(grid.Clone());
             if (!move.HasValue)
             {
@@ -59,9 +62,9 @@ namespace minimaxSize
             }
         }
 
-        private Move? chooseMove(GameGrid grid)
+        private Move? chooseMove(GameGrid grid, Hand hand)
         {
-            var nodes = HelperFunctions.GetAllMoves(grid, this.hand, this.player);
+            var nodes = HelperFunctions.GetAllMoves(grid, hand, this.player);
             if (nodes.Count == 0)
                 return null;
             Move m = nodes[0];
@@ -70,7 +73,7 @@ namespace minimaxSize
             {
                 var gr = grid.Clone();
                 gr.Place(move, this.player);
-                int val = minimax(gr, this.hand, Hand.FullHand.Clone(), DEPTH, false);
+                int val = minimax(gr, hand, Hand.FullHand.Clone(), DEPTH, false);
                 if (val > bestVal)
                 {
                     m = move;
@@ -83,7 +86,7 @@ namespace minimaxSize
 
         private int minimax(GameGrid grid, Hand myHand, Hand oponentHand, int depth, bool maxPlayer)
         {
-            var nodes = HelperFunctions.GetAllMoves(grid, (maxPlayer)? myHand : oponentHand, (maxPlayer) ? this.player : PlayerHelper.other(this.player));
+            var nodes = HelperFunctions.GetAllMoves(grid, (maxPlayer) ? myHand : oponentHand, (maxPlayer) ? this.player : PlayerHelper.other(this.player));
             if ((depth == 0) || (nodes.Count == 0))
                 return score(grid);
             if (maxPlayer)
@@ -105,7 +108,7 @@ namespace minimaxSize
                 {
                     var gr = grid.Clone();
                     gr.Place(node, PlayerHelper.other(this.player));
-                    int val = minimax(gr, myHand, oponentHand.Clone().UsePiece(node.Pc.id),depth - 1, true);
+                    int val = minimax(gr, myHand, oponentHand.Clone().UsePiece(node.Pc.id), depth - 1, true);
                     bestVal = Math.Min(val, bestVal);
                 }
                 return bestVal;
