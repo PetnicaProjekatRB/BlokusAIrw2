@@ -11,6 +11,7 @@ namespace PiecesTester
     {
         KomadiciOrbitale koms;
         GameGrid grid = new GameGrid();
+        GameGrid pomocni = new GameGrid();
         Piece[] pieceFamily;
         int orbitCounter;
 
@@ -22,7 +23,7 @@ namespace PiecesTester
 
         private void btnPiece_Click(object sender, EventArgs e)
         {
-            foreach (var a in koms.orbitale)
+            /*foreach (var a in koms.orbitale)
             {
                 if (a[0].name == txtPieceName.Text)
                 {
@@ -31,7 +32,9 @@ namespace PiecesTester
                     updateBoard();
                     return;
                 }
-            }
+            }*/
+            pomocni.Place(1, 1, PieceLoader.matricaSvega.orbitale[7][0], Player.PL1, false);
+            RaisePaintEvent(null, null);
         }
 
 
@@ -79,6 +82,12 @@ namespace PiecesTester
                         graphics.DrawLine(pen, 0, i * 21, 294, i * 21);
                         graphics.DrawLine(pen, i * 21, 0, i * 21, 294);
                     }
+
+                    for (int i = 0; i < 6; i++)
+                    {
+                        graphics.DrawLine(pen, checkBox1.Location.X, checkBox1.Location.Y + (i * 21) + 30, checkBox1.Location.X + 105, checkBox1.Location.Y + (i * 21) + 30);
+                        graphics.DrawLine(pen, checkBox1.Location.X + (i * 21), checkBox1.Location.Y + 30, checkBox1.Location.X + (i * 21), checkBox1.Location.Y + 105 + 30);
+                    }
                 }
 
                 using (var brushOrange = new SolidBrush(Color.Orange))
@@ -89,6 +98,19 @@ namespace PiecesTester
                         {
                             var ax = square.Key.Item1 * 21 + 1;
                             var ay = 295 - (square.Key.Item2 * 21 + 21);
+                            var pl = square.Value.Owner;
+
+                            graphics.FillRectangle((pl == Player.PL1) ? brushOrange : brushPurple,
+                                ax, ay, 20, 20);
+                        }
+
+                        foreach (var square in pomocni.Squares)
+                        {
+                            if (square.Key.Item1 > 4 || square.Key.Item2 > 4)
+                                continue;
+
+                            var ax = square.Key.Item1 * 21 + checkBox1.Location.X + 1;
+                            var ay = 106 - (square.Key.Item2 * 21 + 21) + checkBox1.Location.Y + 30;
                             var pl = square.Value.Owner;
 
                             graphics.FillRectangle((pl == Player.PL1) ? brushOrange : brushPurple,
@@ -109,7 +131,7 @@ namespace PiecesTester
         private void button2_Click(object sender, EventArgs e)
         {
             var ai1 = new TestAI();
-            var ai2 = new minimaxSize.Odbacivalje();
+            var ai2 = new minimaxSize.Odbacivalje(); 
             ai1.Start(Player.PL1);
             ai2.Start(Player.PL2);
             ai1.hand = Hand.FullHand.Clone();
@@ -120,6 +142,7 @@ namespace PiecesTester
                 ai1.hand.UsePiece(0);
                 ai2.hand.UsePiece(0);
                 ai2.hand.UsePiece(1);
+                ai2.potez += 2;
             }
             grid = new GameGrid();
 
@@ -181,6 +204,16 @@ namespace PiecesTester
                             scoreO.ToString() + " / " + scoreP.ToString());
 
             updateBoard(false);
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
         }
 
 

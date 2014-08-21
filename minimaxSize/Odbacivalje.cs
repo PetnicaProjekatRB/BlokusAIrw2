@@ -10,7 +10,7 @@ namespace minimaxSize
 {
     public class Odbacivalje : Ai
     {
-        private const int SEDAM = 12;
+        private const int SEDAM = 16;
         
         protected override int minimax(GameGrid grid, Hand myHand, Hand oponentHand, int depth, bool maxPlayer, int potez)
         {
@@ -97,25 +97,25 @@ namespace minimaxSize
 
             foreach (int[] lib in m.Pc.liberty)
             {
-                if (((lib[2] & 1) > 0) && (!grid.Covered(m.Xcoord + lib[0] + 1, m.Ycoord + lib[1] + 1, (maxPlayer) ? player : PlayerHelper.other(player))))
+                if (((lib[2] & 1) > 0) && (!grid.Covered(m.Xcoord + lib[0] + 1, m.Ycoord + lib[1] + 1)))
                 {
                     vrednost += 1.5f;
                     if (vrednost > 7)
                         return (int)vrednost;
                 }
-                if (((lib[2] & 2) > 0) && (!grid.Covered(m.Xcoord + lib[0] - 1, m.Ycoord + lib[1] + 1, (maxPlayer) ? player : PlayerHelper.other(player))))
+                if (((lib[2] & 2) > 0) && (!grid.Covered(m.Xcoord + lib[0] - 1, m.Ycoord + lib[1] + 1)))
                 {
                     vrednost += 1.5f;
                     if (vrednost > 7)
                         return (int)vrednost;
                 }
-                if (((lib[2] & 4) > 0) && (!grid.Covered(m.Xcoord + lib[0] - 1, m.Ycoord - lib[1] + 1, (maxPlayer) ? player : PlayerHelper.other(player))))
+                if (((lib[2] & 4) > 0) && (!grid.Covered(m.Xcoord + lib[0] - 1, m.Ycoord - lib[1] + 1)))
                 {
                     vrednost += 1.5f;
                     if (vrednost > 7)
                         return (int)vrednost;
                 }
-                if (((lib[2] & 8) > 0) && (!grid.Covered(m.Xcoord + lib[0] + 1, m.Ycoord - lib[1] + 1, (maxPlayer) ? player : PlayerHelper.other(player))))
+                if (((lib[2] & 8) > 0) && (!grid.Covered(m.Xcoord + lib[0] + 1, m.Ycoord - lib[1] + 1)))
                 {
                     vrednost += 1.5f;
                     if (vrednost > 7)
@@ -126,9 +126,9 @@ namespace minimaxSize
 
             foreach (int[] sq in m.Pc.coords)
             {
-                if(grid.Covered(m.Xcoord + sq[0],m.Ycoord + sq[1],(!maxPlayer) ? player : PlayerHelper.other(player)))
+                if(grid.isLiberty(m.Xcoord + sq[0],m.Ycoord + sq[1],(!maxPlayer) ? player : PlayerHelper.other(player)))
                 {
-                    vrednost += 1.5f;
+                    vrednost += 8f;
                     if (vrednost > 7)
                         return (int)vrednost;
                 }

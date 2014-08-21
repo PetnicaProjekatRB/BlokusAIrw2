@@ -65,6 +65,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -88,6 +89,96 @@
       <Project>{8e6dc3bf-111a-4ae3-9fb9-8b9046f531f8}</Project>
       <Name>minimaxSize</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\L5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\L5Final.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\N.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lstvarnofinal.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\U.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\V5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\F.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\L4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\L51.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\L5Final1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Lstvarnofinal1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\N1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\O4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\T5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\U1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\V3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\V51.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\X.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Y1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Z4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Z5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\W.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\P.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\I1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\I2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\I3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\I4.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\I5.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

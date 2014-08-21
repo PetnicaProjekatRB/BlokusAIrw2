@@ -21,7 +21,7 @@ namespace minimaxSize
         protected Player player;
         protected int DEPTH = 1;
         protected decimal PROCENAT = 0.2M;
-        protected int potez = 1;
+        public int potez = 1;
         protected Random r = new Random();
 
         public bool Validate()
@@ -81,7 +81,7 @@ namespace minimaxSize
             {
                 var gr = grid.Clone();
                 gr.Place(move, this.player);
-                int val = minimax(gr, getDeckForMove(potez).Clone(), Hand.FullHand.Clone(), DEPTH + ((potez > 7)? 3 : 0), false, potez);
+                int val = minimax(gr, getDeckForMove(potez).Clone(), Hand.FullHand.Clone(), DEPTH + ((potez > 9)? 3 : 0), false, potez);
                 if (val > bestVal)
                 {
                     m = move;
