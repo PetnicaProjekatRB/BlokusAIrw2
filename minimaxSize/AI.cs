@@ -9,10 +9,26 @@ namespace minimaxSize
 {
     public class Ai : IBlokusAi
     {
-        public Hand hand;
+        public Hand hand = new Hand
+           (false, false, true,
+            true, true, true,
+            true, false, true,
+            false, true, false,
+            true, true, true,
+            true, true, true,
+            true, true, true);
+        public Hand lesserHand = new Hand
+           (true, true, false,
+            false, false, false,
+            false, true, false,
+            true, false, true,
+            false, false, false,
+            false, false, false,
+            false, false, false);
         public Hand oponentHand;
         private Player player;
         private int DEPTH = 1;
+        private int potez = 1;
 
         public bool Validate()
         {
@@ -47,6 +63,7 @@ namespace minimaxSize
 
         public bool Play(ref GameGrid grid)
         {
+            potez++;
             Move? move = chooseMove(grid.Clone());
             if (!move.HasValue)
             {
@@ -54,14 +71,14 @@ namespace minimaxSize
             }
             else
             {
-                this.hand = this.hand.UsePiece(move.Value.Pc.id);
+                this.getDeckForMove(potez).UsePiece(move.Value.Pc.id);
                 return grid.Place(move.Value, player);
             }
         }
 
         private Move? chooseMove(GameGrid grid)
         {
-            var nodes = HelperFunctions.GetAllMoves(grid, this.hand, this.player);
+            var nodes = HelperFunctions.GetAllMoves(grid, this.getDeckForMove(potez), this.player);
             if (nodes.Count == 0)
                 return null;
             Move m = nodes[0];
@@ -70,7 +87,7 @@ namespace minimaxSize
             {
                 var gr = grid.Clone();
                 gr.Place(move, this.player);
-                int val = minimax(gr, this.hand, Hand.FullHand.Clone(), DEPTH, false);
+                int val = minimax(gr, getDeckForMove(potez).Clone(), Hand.FullHand.Clone(), DEPTH, false, potez);
                 if (val > bestVal)
                 {
                     m = move;
@@ -81,9 +98,9 @@ namespace minimaxSize
         }
 
 
-        private int minimax(GameGrid grid, Hand myHand, Hand oponentHand, int depth, bool maxPlayer)
+        private int minimax(GameGrid grid, Hand myHand, Hand oponentHand, int depth, bool maxPlayer, int potez)
         {
-            var nodes = HelperFunctions.GetAllMoves(grid, (maxPlayer)? myHand : oponentHand, (maxPlayer) ? this.player : PlayerHelper.other(this.player));
+            var nodes = HelperFunctions.GetAllMoves(grid, (maxPlayer) ? myHand : oponentHand, (maxPlayer) ? this.player : PlayerHelper.other(this.player));
             if ((depth == 0) || (nodes.Count == 0))
                 return score(grid);
             if (maxPlayer)
@@ -93,7 +110,7 @@ namespace minimaxSize
                 {
                     var gr = grid.Clone();
                     gr.Place(node, this.player);
-                    int val = minimax(gr, myHand.Clone().UsePiece(node.Pc.id), oponentHand, depth - 1, false);
+                    int val = minimax(gr, (potez == 5) ? getDeckForMove(6).Clone() : (myHand.Clone().UsePiece(node.Pc.id)), oponentHand, depth - 1, false, potez + 1);
                     bestVal = Math.Max(val, bestVal);
                 }
                 return bestVal;
@@ -105,7 +122,7 @@ namespace minimaxSize
                 {
                     var gr = grid.Clone();
                     gr.Place(node, PlayerHelper.other(this.player));
-                    int val = minimax(gr, myHand, oponentHand.Clone().UsePiece(node.Pc.id),depth - 1, true);
+                    int val = minimax(gr, myHand, oponentHand.Clone().UsePiece(node.Pc.id), depth - 1, true, potez + 1);
                     bestVal = Math.Min(val, bestVal);
                 }
                 return bestVal;
@@ -123,6 +140,13 @@ namespace minimaxSize
                     sc--;
             }
             return sc;
+        }
+
+        private Hand getDeckForMove(int move)
+        {
+            if (move <= 5)
+                return lesserHand;
+            return hand;
         }
     }
 }

@@ -112,9 +112,8 @@ namespace PiecesTester
             ai1.Start(Player.PL1);
             ai2.Start(Player.PL2);
             ai1.hand = Hand.FullHand.Clone();
-            ai2.hand = Hand.FullHand.Clone();
             ai1.hand.UsePiece(7);
-            ai2.hand.UsePiece(7);
+            ai2.lesserHand.UsePiece(7);
             grid = new GameGrid();
             grid.Place(3, 3, PieceLoader.matricaSvega.orbitale[7][0], Player.PL1);
             grid.Place(8, 8, PieceLoader.matricaSvega.orbitale[7][0], Player.PL2);
