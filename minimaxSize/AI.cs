@@ -10,25 +10,19 @@ namespace minimaxSize
     public class Ai : IBlokusAi
     {
         public Hand hand = new Hand
-           (false, false, true,
+           (true, true, true,
             true, true, true,
-            true, false, true,
-            false, true, false,
+            true, true, true,
+            true, true, true,
             true, true, true,
             true, true, true,
             true, true, true);
-        public Hand lesserHand = new Hand
-           (true, true, false,
-            false, false, false,
-            false, true, false,
-            true, false, true,
-            false, false, false,
-            false, false, false,
-            false, false, false);
         public Hand oponentHand;
-        private Player player;
-        private int DEPTH = 1;
-        private int potez = 1;
+        protected Player player;
+        protected int DEPTH = 1;
+        protected decimal PROCENAT = 0.2M;
+        protected int potez = 1;
+        protected Random r = new Random();
 
         public bool Validate()
         {
@@ -76,7 +70,7 @@ namespace minimaxSize
             }
         }
 
-        private Move? chooseMove(GameGrid grid)
+        protected Move? chooseMove(GameGrid grid)
         {
             var nodes = HelperFunctions.GetAllMoves(grid, this.getDeckForMove(potez), this.player);
             if (nodes.Count == 0)
@@ -87,7 +81,7 @@ namespace minimaxSize
             {
                 var gr = grid.Clone();
                 gr.Place(move, this.player);
-                int val = minimax(gr, getDeckForMove(potez).Clone(), Hand.FullHand.Clone(), DEPTH, false, potez);
+                int val = minimax(gr, getDeckForMove(potez).Clone(), Hand.FullHand.Clone(), DEPTH + ((potez > 7)? 3 : 0), false, potez);
                 if (val > bestVal)
                 {
                     m = move;
@@ -98,7 +92,7 @@ namespace minimaxSize
         }
 
 
-        private int minimax(GameGrid grid, Hand myHand, Hand oponentHand, int depth, bool maxPlayer, int potez)
+        protected virtual int minimax(GameGrid grid, Hand myHand, Hand oponentHand, int depth, bool maxPlayer, int potez)
         {
             var nodes = HelperFunctions.GetAllMoves(grid, (maxPlayer) ? myHand : oponentHand, (maxPlayer) ? this.player : PlayerHelper.other(this.player));
             if ((depth == 0) || (nodes.Count == 0))
@@ -129,7 +123,9 @@ namespace minimaxSize
             }
         }
 
-        private int score(GameGrid grid)
+        
+
+        protected int score(GameGrid grid)
         {
             int sc = 0;
             foreach (var sq in grid.Squares)
@@ -142,11 +138,11 @@ namespace minimaxSize
             return sc;
         }
 
-        private Hand getDeckForMove(int move)
+        protected Hand getDeckForMove(int move)
         {
-            if (move <= 5)
-                return lesserHand;
             return hand;
         }
+
+
     }
 }

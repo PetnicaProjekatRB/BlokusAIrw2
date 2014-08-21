@@ -2,6 +2,7 @@
 using System.Linq;
 using BlokusDll;
 using System.Collections.Generic;
+using System.Threading;
 
 namespace PiecesTester
 {
@@ -30,6 +31,7 @@ namespace PiecesTester
 
         public bool Play(ref GameGrid grid)
         {
+            Thread.Sleep(1000);
             List<Move> list = HelperFunctions.GetAllMoves(grid, hand, player).ToList<Move>();
             if (list.Count == 0)
                 return false;

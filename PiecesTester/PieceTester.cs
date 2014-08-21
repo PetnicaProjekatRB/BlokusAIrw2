@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using BlokusDll;
+using System.Threading;
 
 namespace PiecesTester
 {
@@ -108,20 +109,45 @@ namespace PiecesTester
         private void button2_Click(object sender, EventArgs e)
         {
             var ai1 = new TestAI();
-            var ai2 = new minimaxSize.Ai();
+            var ai2 = new minimaxSize.Odbacivalje();
             ai1.Start(Player.PL1);
             ai2.Start(Player.PL2);
             ai1.hand = Hand.FullHand.Clone();
             ai1.hand.UsePiece(7);
-            ai2.lesserHand.UsePiece(7);
+            ai2.hand.UsePiece(7);
+            if(checkBox1.Checked)
+            {
+                ai1.hand.UsePiece(0);
+                ai2.hand.UsePiece(0);
+                ai2.hand.UsePiece(1);
+            }
             grid = new GameGrid();
-            grid.Place(3, 3, PieceLoader.matricaSvega.orbitale[7][0], Player.PL1);
-            grid.Place(8, 8, PieceLoader.matricaSvega.orbitale[7][0], Player.PL2);
 
+            grid.Place(8, 8, PieceLoader.matricaSvega.orbitale[7][0], Player.PL2);
+            this.RaisePaintEvent(null, null);
+            Thread.Sleep(1000);
+            grid.Place(3, 3, PieceLoader.matricaSvega.orbitale[7][0], Player.PL1);
+            this.RaisePaintEvent(null, null);
+            Thread.Sleep(1000);
+            if (checkBox1.Checked)
+            {
+
+                grid.Place(12, 11, PieceLoader.matricaSvega.orbitale[1][7], Player.PL2, false);
+                this.RaisePaintEvent(null, null);
+                Thread.Sleep(1000);
+                grid.Place(9, 6, PieceLoader.matricaSvega.orbitale[0][2], Player.PL1, false);
+                this.RaisePaintEvent(null, null);
+                Thread.Sleep(1000);
+                grid.Place(4, 7, PieceLoader.matricaSvega.orbitale[0][0], Player.PL2, false);
+                this.RaisePaintEvent(null, null);
+               
+            }
+            this.RaisePaintEvent(null, null);
             bool both = true;
             while (both)
             {
                 bool first = ai1.Play(ref grid);
+                this.RaisePaintEvent(null, null);
                 bool second = ai2.Play(ref grid);
                 this.RaisePaintEvent(null, null);
                 both = first && second;
@@ -133,7 +159,7 @@ namespace PiecesTester
                 this.RaisePaintEvent(null, null);
             }
 
-            while (ai1.Play(ref grid))
+            while (ai2.Play(ref grid))
             {
 
                 this.RaisePaintEvent(null, null);

@@ -12,22 +12,28 @@ namespace BlokusDll
         private bool libertyCacheValid = false;
         public uint[,] BlockedCache = new uint[14, 14];
         private bool blockedCacheValid = false;
-        public uint[,] SquaresCache = new uint[14, 14];
+        public uint[][] SquaresCache;
         private bool squaresCacheValid = false;
 
         public LibertyType GetLibertyCache(int x, int y, Player pl)
         {
-            if (libertyCacheValid)
+            try
             {
-                if (pl == Player.PL1)
-                    return (LibertyType)(LibertyCache[x, y] & 0x0f);
+                if (libertyCacheValid)
+                {
+                    if (pl == Player.PL1)
+                        return (LibertyType)(LibertyCache[x, y] & 0x0f);
+                    else
+                        return (LibertyType)((LibertyCache[x, y] & 0xf0) >> 4);
+                }
                 else
-                    return (LibertyType)((LibertyCache[x, y] & 0xf0) >> 4);
-            }
-            else
+                {
+                    GenerateLibertyCache();
+                    return GetLibertyCache(x, y, pl);
+                }
+            } catch (IndexOutOfRangeException)
             {
-                GenerateLibertyCache();
-                return GetLibertyCache(x, y, pl);
+                return LibertyType.None;
             }
         }
 
@@ -48,17 +54,23 @@ namespace BlokusDll
 
         public bool GetBlockedCache(int x, int y, Player pl)
         {
-            if (blockedCacheValid)
+            try
             {
-                if (pl == Player.PL1)
-                    return (BlockedCache[x, y] & 1) > 0;
+                if (blockedCacheValid)
+                {
+                    if (pl == Player.PL1)
+                        return (BlockedCache[x, y] & 1) > 0;
+                    else
+                        return (BlockedCache[x, y] & 2) > 0;
+                }
                 else
-                    return (BlockedCache[x, y] & 2) > 0;
-            }
-            else
+                {
+                    GenerateBlockedCache();
+                    return GetBlockedCache(x, y, pl);
+                }
+            } catch (IndexOutOfRangeException)
             {
-                GenerateBlockedCache();
-                return GetBlockedCache(x, y, pl);
+                return true;
             }
         }
 
@@ -80,12 +92,14 @@ namespace BlokusDll
 
         public Player GetSquareCache(int x, int y)
         {
-            if (squaresCacheValid)
-                return (Player)SquaresCache[x, y];
+            var t = new Tuple<int,int>(x,y);
+            if (Squares.ContainsKey(t))
+            {
+                return Squares[t].Owner;
+            }
             else
             {
-                GenerateSquareCache();
-                return GetSquareCache(x, y);
+                return Player.None;
             }
         }
 
@@ -94,16 +108,19 @@ namespace BlokusDll
             if (squaresCacheValid)
                 return;
 
-            SquaresCache = new uint[14, 14];
+            SquaresCache = new uint[14][];
             for (int i = 0; i < 14; i++)
+            {
+                SquaresCache[i] = new uint[14];
                 for (int j = 0; j < 14; j++)
                 {
                     var coords = new Tuple<int, int>(i, j);
                     if (Squares.ContainsKey(coords))
-                        SquaresCache[i, j] = (uint)Squares[coords].Owner;
+                        SquaresCache[i][j] = (uint)Squares[coords].Owner;
                     else
-                        SquaresCache[i, j] = 0;
+                        SquaresCache[i][j] = 0;
                 }
+            }
             squaresCacheValid = true;
         }
 
