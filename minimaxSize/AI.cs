@@ -10,16 +10,16 @@ namespace minimaxSize
     public class Ai : IBlokusAi
     {
         public Hand hand = new Hand
-           (true, true, true,
-            true, true, true,
-            true, true, true,
-            true, true, true,
-            true, true, true,
-            true, true, true,
-            true, true, true);
+           (false, true, false,
+            false, false, false,
+            false, false, false,
+            false, false, false,
+            false, false, false,
+            false, false, false,
+            false, false, false);
         public Hand oponentHand;
         protected Player player;
-        protected int DEPTH = 1;
+        protected const int DEPTH = 1;
         protected decimal PROCENAT = 0.2M;
         public int potez = 1;
         protected Random r = new Random();
@@ -31,31 +31,12 @@ namespace minimaxSize
 
         public bool Start(Player player)
         {
-            hand = Hand.FullHand.Clone();
+            //hand = Hand.FullHand.Clone();
             this.player = player;
             return true;
         }
 
-        public int Modify(string name, string value)
-        {
-            if (name.ToLower() == "depth")
-            {
-                if (!int.TryParse(value, out DEPTH))
-                {
-                    return 1;
-                }
-                else
-                {
-                    return 0;
-                }
-            }
-            else
-            {
-                return 2;
-            }
-        }
-
-        public bool Play(ref GameGrid grid)
+        public virtual bool Play(ref GameGrid grid)
         {
             potez++;
             Move? move = chooseMove(grid.Clone());
@@ -65,30 +46,36 @@ namespace minimaxSize
             }
             else
             {
-                this.getDeckForMove(potez).UsePiece(move.Value.Pc.id);
+                //this.getDeckForMove(potez).UsePiece(move.Value.Pc.id);
                 return grid.Place(move.Value, player);
             }
         }
 
-        protected Move? chooseMove(GameGrid grid)
+        protected virtual Move? chooseMove(GameGrid grid)
         {
             var nodes = HelperFunctions.GetAllMoves(grid, this.getDeckForMove(potez), this.player);
             if (nodes.Count == 0)
                 return null;
+            List<Move> bests = new List<Move>();
             Move m = nodes[0];
             int bestVal = int.MinValue;
             foreach (var move in nodes)
             {
                 var gr = grid.Clone();
                 gr.Place(move, this.player);
-                int val = minimax(gr, getDeckForMove(potez).Clone(), Hand.FullHand.Clone(), DEPTH + ((potez > 9)? 3 : 0), false, potez);
+                int val = minimax(gr, getDeckForMove(potez).Clone(), Hand.FullHand.Clone(), DEPTH + ((potez > 9) ? 3 : (potez > 4)? 1 : 0), false, potez);
                 if (val > bestVal)
                 {
-                    m = move;
+                    bests = new List<Move>();
+                    bests.Add(move);
                     bestVal = val;
                 }
+                else if (val == bestVal)
+                {
+                    bests.Add(move);
+                }
             }
-            return m;
+            return bests.ElementAt(new Random().Next(bests.Count));
         }
 
 
@@ -144,5 +131,11 @@ namespace minimaxSize
         }
 
 
+
+
+        public int Modify(string name, string value)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

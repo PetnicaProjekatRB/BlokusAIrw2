@@ -88,7 +88,6 @@
             this.btnPiece.TabIndex = 0;
             this.btnPiece.Text = "Get Piece";
             this.btnPiece.UseVisualStyleBackColor = true;
-            this.btnPiece.Click += new System.EventHandler(this.btnPiece_Click);
             // 
             // txtPieceName
             // 
@@ -105,7 +104,6 @@
             this.btnOrbitPrev.TabIndex = 2;
             this.btnOrbitPrev.Text = "Prev Orbit";
             this.btnOrbitPrev.UseVisualStyleBackColor = true;
-            this.btnOrbitPrev.Click += new System.EventHandler(this.btnOrbitPrev_Click);
             // 
             // btnOrbitNext
             // 
@@ -115,7 +113,6 @@
             this.btnOrbitNext.TabIndex = 3;
             this.btnOrbitNext.Text = "Next Orbit";
             this.btnOrbitNext.UseVisualStyleBackColor = true;
-            this.btnOrbitNext.Click += new System.EventHandler(this.btnOrbitNext_Click);
             // 
             // button1
             // 
@@ -125,7 +122,6 @@
             this.button1.TabIndex = 4;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // button2
             // 
@@ -135,7 +131,6 @@
             this.button2.TabIndex = 5;
             this.button2.Text = "Start AI";
             this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
             // checkBox1
             // 
@@ -393,6 +388,7 @@
             this.Controls.Add(this.btnPiece);
             this.Name = "PieceTester";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.PieceTester_Load);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.PieceTester_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.I5picbtn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.I3picbtn)).EndInit();

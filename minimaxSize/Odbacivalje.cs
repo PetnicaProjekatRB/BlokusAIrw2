@@ -10,7 +10,7 @@ namespace minimaxSize
 {
     public class Odbacivalje : Ai
     {
-        private const int SEDAM = 16;
+        protected const int SEDAM = 18;
         
         protected override int minimax(GameGrid grid, Hand myHand, Hand oponentHand, int depth, bool maxPlayer, int potez)
         {
@@ -21,10 +21,10 @@ namespace minimaxSize
             Console.WriteLine("2: {0}.{1}", (DateTime.Now - t).Seconds, (DateTime.Now - t).Milliseconds);
             t = DateTime.Now;
 #endif
-            if (nodes.Any((Move m) => vrednostPoteza(grid, m, maxPlayer) >= (SEDAM - potez / 2)))
+            /*if (nodes.Any((Move m) => vrednostPoteza(grid, m, maxPlayer, potez) <= (SEDAM - (float)potez / 1.5)))
             {
-                nodes = (from m in nodes where vrednostPoteza(grid,m,maxPlayer) >= (SEDAM - potez / 2) select m).ToList();
-            }
+                nodes = (from m in nodes where vrednostPoteza(grid, m, maxPlayer, potez) <= (SEDAM - potez / 1.5) select m).ToList();
+            }*/
 #if KURAC
             Console.WriteLine("3: {0}.{1}", (DateTime.Now - t).Seconds, (DateTime.Now - t).Milliseconds);
             t = DateTime.Now;
@@ -84,13 +84,19 @@ namespace minimaxSize
             }
         }
 
-        protected int vrednostPoteza(GameGrid grid, Move m, bool maxPlayer)
+        
+        protected int min4 (int a, int b, int c, int d)
+        {
+            return Math.Max(Math.Max(a, b), Math.Max(c, d));
+        }
+
+        protected int vrednostPoteza(GameGrid grid, Move m, bool maxPlayer, int potez)
         {
             float vrednost = 0;
 
-            vrednost += m.Pc.coords.Length * 1.0f;
-            
-            if (vrednost > 7)
+            vrednost += m.Pc.coords.Length * 2.0f;
+
+            if (vrednost > (SEDAM - potez / 2))
                 return (int)vrednost;
 
          // vrednost += m.Pc.liberty.Length * 1.5f;
@@ -99,26 +105,30 @@ namespace minimaxSize
             {
                 if (((lib[2] & 1) > 0) && (!grid.Covered(m.Xcoord + lib[0] + 1, m.Ycoord + lib[1] + 1)))
                 {
-                    vrednost += 1.5f;
-                    if (vrednost > 7)
+                    vrednost += 7f * min4((m.Xcoord + lib[0] + 1) + 1, 14 - (m.Xcoord + lib[0] + 1), (m.Ycoord + lib[1] + 1) + 1, 14 - (m.Ycoord + lib[1] + 1)) / 7;
+                    //vrednost += 1.5f;
+                    if (vrednost > (SEDAM - potez / 2))
                         return (int)vrednost;
                 }
                 if (((lib[2] & 2) > 0) && (!grid.Covered(m.Xcoord + lib[0] - 1, m.Ycoord + lib[1] + 1)))
                 {
-                    vrednost += 1.5f;
-                    if (vrednost > 7)
+                    vrednost += 7f * min4((m.Xcoord + lib[0] - 1) + 1, 14 - (m.Xcoord + lib[0] - 1), (m.Ycoord + lib[1] + 1) + 1, 14 - (m.Ycoord + lib[1] + 1)) / 7;
+                    //vrednost += 1.5f;
+                    if (vrednost > (SEDAM - potez / 2))
                         return (int)vrednost;
                 }
-                if (((lib[2] & 4) > 0) && (!grid.Covered(m.Xcoord + lib[0] - 1, m.Ycoord - lib[1] + 1)))
+                if (((lib[2] & 4) > 0) && (!grid.Covered(m.Xcoord + lib[0] - 1, m.Ycoord + lib[1] - 1)))
                 {
-                    vrednost += 1.5f;
-                    if (vrednost > 7)
+                    vrednost += 7f * min4((m.Xcoord + lib[0] - 1) + 1, 14 - (m.Xcoord + lib[0] - 1), (m.Ycoord + lib[1] - 1) + 1, 14 - (m.Ycoord + lib[1] - 1)) / 7;
+                    //vrednost += 1.5f;
+                    if (vrednost > (SEDAM - potez / 2))
                         return (int)vrednost;
                 }
-                if (((lib[2] & 8) > 0) && (!grid.Covered(m.Xcoord + lib[0] + 1, m.Ycoord - lib[1] + 1)))
+                if (((lib[2] & 8) > 0) && (!grid.Covered(m.Xcoord + lib[0] + 1, m.Ycoord + lib[1] - 1)))
                 {
-                    vrednost += 1.5f;
-                    if (vrednost > 7)
+                    vrednost += 7f * min4((m.Xcoord + lib[0] + 1) + 1, 14 - (m.Xcoord + lib[0] + 1), (m.Ycoord + lib[1] - 1) + 1, 14 - (m.Ycoord + lib[1] - 1)) / 7;
+                    //vrednost += 1.5f;
+                    if (vrednost > (SEDAM - potez / 2))
                         return (int)vrednost;
                 }
 
@@ -128,15 +138,15 @@ namespace minimaxSize
             {
                 if(grid.isLiberty(m.Xcoord + sq[0],m.Ycoord + sq[1],(!maxPlayer) ? player : PlayerHelper.other(player)))
                 {
-                    vrednost += 8f;
-                    if (vrednost > 7)
+                    vrednost += 5.5f;
+                    if (vrednost > (SEDAM - potez / 2))
                         return (int)vrednost;
                 }
 
                 if (grid.Covered(m.Xcoord + sq[0], m.Ycoord + sq[1], (maxPlayer) ? player : PlayerHelper.other(player)))
                 {
                     vrednost -= 0.75f;
-                    if (vrednost > 7)
+                    if (vrednost > (SEDAM - potez / 2))
                         return (int)vrednost;
                 }
             }

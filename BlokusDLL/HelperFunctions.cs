@@ -28,16 +28,16 @@ namespace BlokusDll
                         {
                             if (hand[i])
                             {
-                                foreach (var piece in PieceLoader.matricaSvega.orbitale[i])
+                                for (int l = 0; i < PieceLoader.matricaSvega.orbitale[i].Length; i++)
                                 {
-                                    foreach (var pieceLiberty in piece.liberty)
+                                    foreach (var pieceLiberty in PieceLoader.matricaSvega.orbitale[i][l].liberty)
                                     {
                                         if ((pieceLiberty[2] & liber) > 0)
                                         { 
                                             var ax = pieceLiberty[0];
                                             var ay = pieceLiberty[1];
-                                            if (grid.Validate(j - ax, k - ay, piece, pl))
-                                                retVal.Add(new Move(j - ax, k - ay, piece));
+                                            if (grid.Validate(j - ax, k - ay, PieceLoader.matricaSvega.orbitale[i][l], pl))
+                                                retVal.Add(new Move(j - ax, k - ay, PieceLoader.matricaSvega.orbitale[i][l]));
                                         }
                                     }
                                 }

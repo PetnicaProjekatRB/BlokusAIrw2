@@ -26,7 +26,7 @@ namespace BlokusDll
                 p.liberty[i] = new int[3];
                 p.liberty[i][0] = this.liberty[i][1];
                 p.liberty[i][1] = -this.liberty[i][0];
-                p.liberty[i][2] = (this.liberty[i][2] << 1) & (this.liberty[i][2] > 7 ? 1 : 0);
+                p.liberty[i][2] = (((this.liberty[i][2] << 1) & 15) | ((this.liberty[i][2] >> 3) & 15));
             }
             return p;
         }
@@ -68,7 +68,7 @@ namespace BlokusDll
                 y |= (x & 1);
                 x >>= 1;
             }
-            return y;
+            return y >> 28;
         }
     }
 }

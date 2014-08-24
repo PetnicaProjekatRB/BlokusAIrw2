@@ -15,16 +15,16 @@ namespace BlokusDll
         public uint[][] SquaresCache;
         private bool squaresCacheValid = false;
 
-        public LibertyType GetLibertyCache(int x, int y, Player pl)
+        public uint GetLibertyCache(int x, int y, Player pl)
         {
             try
             {
                 if (libertyCacheValid)
                 {
                     if (pl == Player.PL1)
-                        return (LibertyType)(LibertyCache[x, y] & 0x0f);
+                        return (LibertyCache[x, y] & 0x0f);
                     else
-                        return (LibertyType)((LibertyCache[x, y] & 0xf0) >> 4);
+                        return ((LibertyCache[x, y] & 0xf0) >> 4);
                 }
                 else
                 {
@@ -33,7 +33,7 @@ namespace BlokusDll
                 }
             } catch (IndexOutOfRangeException)
             {
-                return LibertyType.None;
+                return 0;
             }
         }
 
@@ -46,10 +46,30 @@ namespace BlokusDll
             for (int i = 0; i < 14; i++)
                 for (int j = 0; j < 14; j++)
                 {
-                    LibertyCache[i, j] = (uint)getLibertyType(i, j, Player.PL1) |
-                                         (uint)getLibertyType(i, j, Player.PL2) << 4;
+                    LibertyCache[i, j] = (uint)getLibertyTypeSlow(i, j, Player.PL1) |
+                                         (uint)getLibertyTypeSlow(i, j, Player.PL2) << 4;
                 }
             libertyCacheValid = true;
+        }
+
+        private uint getLibertyTypeSlow(int x, int y, Player pl)
+        {
+            uint t = 0;
+            if (x < 13)
+            {
+                if ((y < 13) && Covered(x + 1, y + 1, pl))
+                    t |= (uint)LibertyType.UR;
+                if ((y > 0) && Covered(x + 1, y - 1, pl))
+                    t |= (uint)LibertyType.UL;
+            }
+            if (x > 0)
+            {
+                if ((y < 13) && Covered(x - 1, y + 1, pl))
+                    t |= (uint)LibertyType.LR;
+                if ((y > 0) && Covered(x - 1, y - 1, pl))
+                    t |= (uint)LibertyType.LL;
+            }
+            return t;
         }
 
         public bool GetBlockedCache(int x, int y, Player pl)
@@ -84,18 +104,18 @@ namespace BlokusDll
                 for (int j = 0; j < 14; j++)
                 {
                     BlockedCache[i, j] = (uint)(
-                        (Free(i, j, Player.PL1) ? 0 : 1) &
-                        (Free(i, j, Player.PL2) ? 0 : 2));
+                        (FreeSlow(i, j, Player.PL1) ? 0 : 1) |
+                        (FreeSlow(i, j, Player.PL2) ? 0 : 2));
                 }
             blockedCacheValid = true;
         }
 
         public Player GetSquareCache(int x, int y)
         {
-            var t = new Tuple<int,int>(x,y);
-            if (Squares.ContainsKey(t))
+            Square value;
+            if (Squares.TryGetValue(new Tuple<int,int>(x,y),out value))
             {
-                return Squares[t].Owner;
+                return value.Owner;
             }
             else
             {
@@ -105,6 +125,8 @@ namespace BlokusDll
 
         public void GenerateSquareCache()
         {
+            return;
+            /*
             if (squaresCacheValid)
                 return;
 
@@ -122,6 +144,7 @@ namespace BlokusDll
                 }
             }
             squaresCacheValid = true;
+             * */
         }
 
         public bool Covered(int x, int y)
@@ -135,6 +158,11 @@ namespace BlokusDll
         }
 
         public bool Free(int x, int y, Player pl)
+        {
+            return !GetBlockedCache(x, y, pl);
+        }
+
+        private bool FreeSlow(int x, int y, Player pl)
         {
             return (
                     !Covered(x, y) &&
@@ -167,22 +195,7 @@ namespace BlokusDll
 
         public LibertyType getLibertyType(int x, int y, Player pl)
         {
-            LibertyType t = LibertyType.None;
-            if (x < 13)
-            {
-                if ((y < 13) && Covered(x + 1, y + 1, pl))
-                    t |= LibertyType.UR;
-                if ((y > 0) && Covered(x + 1, y - 1, pl))
-                    t |= LibertyType.UL;
-            }
-            if (x > 0)
-            {
-                if ((y < 13) && Covered(x - 1, y + 1, pl))
-                    t |= LibertyType.LR;
-                if ((y > 0) && Covered(x - 1, y - 1, pl))
-                    t |= LibertyType.LL;
-            }
-            return t;
+            return (LibertyType)GetLibertyCache(x, y, pl);
         }
 
         public bool Place(int x, int y, Piece p, Player pl, bool validate)
