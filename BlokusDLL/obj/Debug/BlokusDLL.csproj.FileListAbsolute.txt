@@ -20,3 +20,9 @@ C:\Users\mihajlo\Source\Repos\BlokusAIrw23\BlokusDLL\bin\Debug\Newtonsoft.Json.d
 C:\Users\mihajlo\Source\Repos\BlokusAIrw23\BlokusDLL\obj\Debug\BlokusDll.dll
 C:\Users\mihajlo\Source\Repos\BlokusAIrw23\BlokusDLL\obj\Debug\BlokusDll.pdb
 C:\Users\mihajlo\Source\Repos\BlokusAIrw23\BlokusDLL\obj\Debug\BlokusDll.csprojResolveAssemblyReference.cache
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\BlokusDLL\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\BlokusDLL\obj\Debug\BlokusDll.csprojResolveAssemblyReference.cache
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\BlokusDLL\obj\Debug\BlokusDll.dll
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\BlokusDLL\obj\Debug\BlokusDll.pdb
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\BlokusDLL\bin\Debug\BlokusDll.dll
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\BlokusDLL\bin\Debug\BlokusDll.pdb
