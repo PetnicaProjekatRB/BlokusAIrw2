@@ -6,8 +6,40 @@ namespace BlokusDll
 {
     public static class HelperFunctions
     {
-        public static List<Move> GetAllMoves(GameGrid grid, Hand hand, Player pl)
+        public static List<Move> GetAllMoves(GameGrid grid, bool[] hand, Player pl)
         {
+#if true
+            var retval = new List<Move>();
+            grid.GenerateLibertyCache();
+            for (int j = 0; j < 14; j++)
+            {
+                for (int k = 0; k < 14; k++)
+                {
+                    if (grid.isLiberty(j,k,pl) || 
+                        (j == 4 && k == 4 && grid.GetSquareCache(4,4) == Player.None) || 
+                        (j == 9 && k == 9 && grid.GetSquareCache(9,9) == Player.None))
+                    {
+                        for (int i = 0; i < 21; i++)
+                        {
+                            if (hand[i])
+                            {
+                                foreach (var p in PieceLoader.matricaSvega.orbitale[i])
+                                {
+                                    foreach (var c in p.coords)
+                                    {
+                                        if (grid.Validate(j - c[0], k - c[1], p, pl))
+                                        {
+                                            retval.Add(new Move(j-c[0], k-c[1], p));
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            return retval;
+#else
             var retVal = new List<Move>();
             grid.GenerateLibertyCache();
             for (int j = 0; j < 14; j++)
@@ -48,6 +80,7 @@ namespace BlokusDll
             }
 
             return retVal;
+#endif
         }
     }
 }

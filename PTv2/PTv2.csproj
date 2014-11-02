@@ -78,6 +78,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AiCollection\AiCollection.csproj">
+      <Project>{eec3ee62-9367-4894-9d4d-3fa56a3a87c5}</Project>
+      <Name>AiCollection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\BlokusDLL\BlokusDll.csproj">
       <Project>{7cbeb90a-582b-4c7c-ae9f-ca6c9ad22deb}</Project>
       <Name>BlokusDll</Name>

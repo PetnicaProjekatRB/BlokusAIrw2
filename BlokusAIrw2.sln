@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlokusDll", "BlokusDLL\Blok
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PTv2", "PTv2\PTv2.csproj", "{F455633C-3B3E-45B5-BEB0-7E6EFB25737E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AiCollection", "AiCollection\AiCollection.csproj", "{EEC3EE62-9367-4894-9D4D-3FA56A3A87C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{F455633C-3B3E-45B5-BEB0-7E6EFB25737E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F455633C-3B3E-45B5-BEB0-7E6EFB25737E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F455633C-3B3E-45B5-BEB0-7E6EFB25737E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EEC3EE62-9367-4894-9D4D-3FA56A3A87C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EEC3EE62-9367-4894-9D4D-3FA56A3A87C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EEC3EE62-9367-4894-9D4D-3FA56A3A87C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EEC3EE62-9367-4894-9D4D-3FA56A3A87C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
