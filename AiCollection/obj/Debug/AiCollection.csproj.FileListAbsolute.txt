@@ -1,0 +1,10 @@
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\AiCollection\bin\Debug\AiCollection.dll
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\AiCollection\bin\Debug\AiCollection.pdb
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\AiCollection\bin\Debug\BlokusDll.dll
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\AiCollection\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\AiCollection\bin\Debug\BlokusDll.pdb
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\AiCollection\obj\Debug\AiCollection.csprojResolveAssemblyReference.cache
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\AiCollection\obj\Debug\AiCollection.dll
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\AiCollection\obj\Debug\AiCollection.pdb
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\AiCollection\obj\Debug\AiCollection.FormPlayer.resources
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\AiCollection\obj\Debug\AiCollection.csproj.GenerateResource.Cache

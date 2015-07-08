@@ -6,6 +6,12 @@ namespace BlokusDll
 {
     public static class HelperFunctions
     {
+
+        public static bool IsReachableByPlayer(GameGrid grid, Player pl)
+        {
+            
+        }
+
         public static List<Move> GetAllMoves(GameGrid grid, bool[] hand, Player pl)
         {
 #if true

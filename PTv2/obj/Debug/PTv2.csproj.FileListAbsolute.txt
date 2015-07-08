@@ -1,0 +1,15 @@
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\PTv2\bin\Debug\PTv2.exe.config
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\PTv2\obj\Debug\PTv2.Form1.resources
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\PTv2\obj\Debug\PTv2.Properties.Resources.resources
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\PTv2\obj\Debug\PTv2.csproj.GenerateResource.Cache
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\PTv2\bin\Debug\PTv2.exe
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\PTv2\bin\Debug\PTv2.pdb
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\PTv2\bin\Debug\BlokusDll.dll
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\PTv2\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\PTv2\bin\Debug\BlokusDll.pdb
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\PTv2\obj\Debug\PTv2.csprojResolveAssemblyReference.cache
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\PTv2\obj\Debug\PTv2.exe
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\PTv2\obj\Debug\PTv2.pdb
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\PTv2\bin\Debug\AiCollection.dll
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\PTv2\bin\Debug\AiCollection.pdb
+C:\Users\Nikola\Source\Repos\BlokusAIrw2\PTv2\obj\Debug\AiCollection.FormPlayer.resources
